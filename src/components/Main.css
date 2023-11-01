@@ -1,0 +1,15 @@
+.content {
+  display: grid;
+  grid-template-areas: 
+  "navbar content";
+  grid-template-columns: 10em;
+  gap: 1em;
+}
+
+.content-categories {
+  grid-area: navbar;
+}
+
+.main-content {
+  grid-area: content;
+}

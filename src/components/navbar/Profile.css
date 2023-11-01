@@ -1,0 +1,7 @@
+.profile {
+  width: 40px;
+  aspect-ratio: 1 / 1;
+  background-color: blue;
+  border-radius: 50%;
+  cursor: pointer;
+}
