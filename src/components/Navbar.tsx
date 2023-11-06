@@ -10,18 +10,14 @@ interface WindowSize {
 interface Props {
   onClick: () => void;
   windowSize: WindowSize;
+  toggle?: boolean;
 }
 
-const Navbar = ({ onClick }: Props) => {
+const Navbar = ({ onClick, toggle }: Props) => {
   return (
-    <nav className="navbar">
-      <div className="navbar-logo-toggle">
-        <h2>Navbar</h2>
-        <button onClick={onClick} className="navbar-menu">
-          <div className="navbar-menu-item"></div>
-          <div className="navbar-menu-item"></div>
-          <div className="navbar-menu-item"></div>
-        </button>
+    <nav className="bg-slate-900 flex justify-between items-center px-5">
+      <div className="flex flex-row gap-2 items-center">
+        <h2 className="text-slate-50"></h2>
       </div>
       <Profile></Profile>
     </nav>

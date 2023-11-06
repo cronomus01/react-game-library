@@ -1,11 +1,21 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-#root {
+html {
+  @apply h-full;
+}
+body {
+  @apply h-full;
+}
+div#root {
+  @apply h-full;
+}
+* {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+/* 
+.root {
   display: grid;
   grid-template-areas:
     "navbar"
@@ -48,7 +58,7 @@ footer {
 .content {
 }
 
-@media (min-width: 720px) {
+@media (min-width: 768px) {
     #root {
       grid-template-areas:
       "aside navbar"
@@ -67,18 +77,4 @@ footer {
   .navbar {
     grid-area: navbar;
   }
-
-  .app-aside.heading-open {
-    position: relative;
-    min-height: 100%;
-    transform: translateX(0);
-    /* transform: translateX(-100%); */
-  }
-
-  .app-aside.heading-close ~ .navbar,
-  .app-aside.heading-close ~ .content,
-  .app-aside.heading-close ~ footer {
-    transform: translateX(-15em);
-    width: calc(15em + 100%);
-  }
-}
+} */

@@ -10,11 +10,9 @@ const useToggleSidebar = () => {
   useEffect(() => {
     const setSize = () => {
       setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-      console.log(windowSize.width)
     };
 
-      if(windowSize.width >= 720) {
-        console.log(windowSize.width)
+      if(windowSize.width >= 768) {
         setToggle(true)
       } else {
         setToggle(false)
@@ -35,21 +33,11 @@ const useToggleSidebar = () => {
     }
   };
 
-
-  const setToggleClass = () => {
-    if(toggle) {
-      return "heading-open"
-    } else {
-      return "heading-close"
-    }
-  };
-
   return [
     {
       windowSize: windowSize,
       toggle: toggle,
       onToggle: onToggle,
-      setToggleClass: setToggleClass,
     }
   ]
 }

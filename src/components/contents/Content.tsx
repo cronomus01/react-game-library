@@ -1,120 +1,221 @@
-import React, { useEffect, useState, ReactNode } from "react";
-import "./Content.css";
+import React, { useEffect, useState } from "react";
 import Search from "./Search";
-
-interface Games {
-  category: Array<string>;
-  gameId: number;
-  title: string;
-  description: string;
-}
-
-const gameLists: Array<Games> = [
-  {
-    category: ["action game", "sports video game", "adventure game"],
-    gameId: 1,
-    title: "Batman",
-    description: "lorem ipsum",
-  },
-  {
-    category: ["sports video game"],
-    gameId: 2,
-    title: "Spidermam",
-    description: "lorem ipsum",
-  },
-  {
-    category: ["action game", "sports video game", "adventure game"],
-    gameId: 3,
-    title: "Superman",
-    description: "lorem ipsum",
-  },
-  {
-    category: ["adventure game"],
-    gameId: 4,
-    title: "Hulk",
-    description: "lorem ipsum",
-  },
-  {
-    category: ["sports video game"],
-    gameId: 5,
-    title: "COD",
-    description: "lorem ipsum",
-  },
-];
+import Sort from "./Sort";
+import SortDropDown from "./SortDropDown";
+import Games from "../../types/Games";
 
 interface Props {
   category?: string;
 }
 
+const ALPHABETICAL = 1;
+const RELEASE_DATE = 2;
+const POPULARITY = 3;
+const RELEVANCE = 4;
+
 const Content = ({ category }: Props) => {
   const [games, setGames] = useState<Array<Games>>([]);
   const [searchedGames, setSearchedGame] = useState("");
+  const [dropDownSort, setDropDownSort] = useState(false);
+  const [sort, setSort] = useState(0);
+
+  const fetchGames = async () => {
+    try {
+      const url =
+        "https://free-to-play-games-database.p.rapidapi.com/api/games";
+      const options = {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key":
+            "e99ab8614dmsh9fa4bdc448a9a1bp1352d2jsnaa3c19a0e7d4",
+          "X-RapidAPI-Host": "free-to-play-games-database.p.rapidapi.com",
+        },
+      };
+
+      const response = await fetch(url, options);
+      const result: Array<Games> = await response.json();
+
+      const search = Array.from(result).filter((game: Games) => {
+        const newTitle = game.title.toLowerCase().split(" ").join(" ");
+
+        if (newTitle.includes(searchedGames)) {
+          return game;
+        }
+      });
+
+      if (search) {
+        setGames(search);
+      } else {
+        setGames(result);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const sortGameByWithCategory = async (value: string) => {
+    try {
+      const url = `https://free-to-play-games-database.p.rapidapi.com/api/games?category=${category}&sort-by=${value}`;
+      const options = {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key":
+            "e99ab8614dmsh9fa4bdc448a9a1bp1352d2jsnaa3c19a0e7d4",
+          "X-RapidAPI-Host": "free-to-play-games-database.p.rapidapi.com",
+        },
+      };
+
+      const response = await fetch(url, options);
+      const result: Array<Games> = await response.json();
+
+      const search = Array.from(result).filter((game: Games) => {
+        if (game.title.includes(searchedGames)) {
+          return game;
+        }
+      });
+
+      if (search) {
+        setGames(search);
+      } else {
+        setGames(result);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const sortGameByWithoutCategory = async (value: string) => {
+    try {
+      const url = `https://free-to-play-games-database.p.rapidapi.com/api/games?sort-by=${value}`;
+      const options = {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key":
+            "e99ab8614dmsh9fa4bdc448a9a1bp1352d2jsnaa3c19a0e7d4",
+          "X-RapidAPI-Host": "free-to-play-games-database.p.rapidapi.com",
+        },
+      };
+
+      const response = await fetch(url, options);
+      const result: Array<Games> = await response.json();
+
+      const search = Array.from(result).filter((game: Games) => {
+        if (game.title.includes(searchedGames)) {
+          return game;
+        }
+      });
+
+      if (search) {
+        setGames(search);
+      } else {
+        setGames(result);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const filterGames = async () => {
+    try {
+      const url = `https://free-to-play-games-database.p.rapidapi.com/api/games?category=${category}`;
+      const options = {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key":
+            "e99ab8614dmsh9fa4bdc448a9a1bp1352d2jsnaa3c19a0e7d4",
+          "X-RapidAPI-Host": "free-to-play-games-database.p.rapidapi.com",
+        },
+      };
+
+      const response = await fetch(url, options);
+      const result: Array<Games> = await response.json();
+
+      const search = Array.from(result).filter((game: Games) => {
+        if (game.title.includes(searchedGames)) {
+          return game;
+        }
+      });
+
+      if (search) {
+        setGames(search);
+      } else {
+        setGames(result);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
-    console.log("starting");
-    const fetchGames = () => {
-      try {
-        const newList = gameLists.filter((game: Games) => {
-          if (category == "All") {
-            if (
-              game.title.toLowerCase().includes(searchedGames) ||
-              game.category.includes(searchedGames)
-            ) {
-              return game;
-            }
-          } else {
-            if (!searchedGames) {
-              if (game.category.includes(category.toLowerCase())) {
-                return game;
-              }
-            }
-          }
-        });
-
-        const games = new Promise<Array<Games>>((resolve, reject) => {
-          setTimeout(() => {
-            resolve(newList);
-          }, 500);
-        });
-        games.then((data) => {
-          console.log("fetch finished");
-          setGames(data);
-        });
-        console.log("start next");
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    const displayGames = async () => {
+    if (category == "All") {
+      // filterGames();
       fetchGames();
-    };
 
-    displayGames();
-  }, [category, searchedGames]);
+      if (sort == ALPHABETICAL) {
+        sortGameByWithoutCategory("alphabetical");
+      }
+
+      if (sort == RELEASE_DATE) {
+        sortGameByWithoutCategory("release-date");
+      }
+
+      if (sort == POPULARITY) {
+        sortGameByWithoutCategory("popularity");
+      }
+
+      if (sort == RELEVANCE) {
+        sortGameByWithoutCategory("relevance");
+      }
+    } else {
+      filterGames();
+
+      if (sort == ALPHABETICAL) {
+        sortGameByWithCategory("alphabetical");
+      }
+
+      if (sort == RELEASE_DATE) {
+        sortGameByWithCategory("release-date");
+      }
+
+      if (sort == POPULARITY) {
+        sortGameByWithCategory("popularity");
+      }
+
+      if (sort == RELEVANCE) {
+        sortGameByWithCategory("relevance");
+      }
+    }
+  }, [category, searchedGames, sort]);
 
   const displayGames = () => {
     return games.map((game: Games, gameIndex: number) => {
       return (
-        <li key={gameIndex} className="game-lists-item">
+        <li
+          key={gameIndex}
+          className="border-slate-900 border-2 rounded-lg text-slate-900 w-[15em] px-2 py-3"
+        >
           <div>
-            <h3>{game.title}</h3>
-            <p>{game.description}</p>
+            <h3 className="font-bold">{game.title}</h3>
+            <p>{game.publisher}</p>
           </div>
-          <img src="vite.svg" alt="image" />
-          <div>
-            <h6>Categories:</h6>
-            <ul className="content-category-list">
-              {game.category.map((category: string, categoryIndex: number) => {
-                return (
-                  <>
-                    <li key={categoryIndex}>
-                      <h5>{category}</h5>
-                    </li>
-                  </>
-                );
-              })}
-            </ul>
+          <img
+            className="w-full max-w-[15rem] rounded-lg mt-3"
+            src={game.thumbnail}
+            alt="image"
+          />
+          <div className="mt-5 flex flex-col">
+            <div className="flex gap-1">
+              <h6 className="text-sm">Category:</h6>
+              <p className="text-sm font-bold">{game.genre}</p>
+            </div>
+            <div className="flex gap-1">
+              <h6 className="text-sm">Platform:</h6>
+              <p className="text-sm font-bold">{game.platform}</p>
+            </div>
+            <div className="flex gap-1">
+              <h6 className="text-sm">Release Date:</h6>
+              <p className="text-sm font-bold">{game.release_date}</p>
+            </div>
           </div>
         </li>
       );
@@ -125,10 +226,26 @@ const Content = ({ category }: Props) => {
     setSearchedGame(event.target.value.toLowerCase());
   };
 
+  const sortGame = (value: number) => {
+    console.log(value);
+    setSort(value);
+  };
+
   return (
-    <main className="main-content">
-      <Search onSearch={searchGame}></Search>
-      <ul className="game-lists">{displayGames()}</ul>
+    <main className="p-2 basis-10/12">
+      <div className="flex justify-between relative">
+        <Search onSearch={searchGame}></Search>
+        <Sort
+          sort={dropDownSort}
+          onClick={
+            !dropDownSort
+              ? () => setDropDownSort(true)
+              : () => setDropDownSort(false)
+          }
+        ></Sort>
+        {dropDownSort && <SortDropDown onClick={sortGame} />}
+      </div>
+      <ul className="flex flex-wrap gap-2 mt-2">{displayGames()}</ul>
     </main>
   );
 };

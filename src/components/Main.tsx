@@ -1,34 +1,24 @@
-import React, { ReactNode, useState, useEffect } from "react";
+import React, { ReactNode, useState, useEffect, useRef } from "react";
+import ReactDOM from "react-dom";
 import Navbar from "./contents/Categories";
 import Content from "./contents/Content";
-import "./Main.css";
 import Categories from "./contents/Categories";
 
 const Main = () => {
   const [category, setCategory] = useState("All");
+  const [index, setIndex] = useState<string | number>(0);
 
-  const [index, setIndex] = useState(0);
-  const [clickedCategory, setClickCategory] = useState<ReactNode>();
-
-  useEffect(() => {
-    if (clickedCategory?.dataset?.value == index) {
-      clickedCategory?.classList.add("active");
-    }
-
-    return () => {
-      clickedCategory?.classList.remove("active");
-    };
-  }, [index]);
-
-  const onClickCategory = (event) => {
-    setCategory(event.target.innerText);
-    setIndex(event.target.dataset.value);
-    // console.log(event.target.dataset.value);
-    setClickCategory(event.target);
+  const onClickCategory = (index: number, category: string) => {
+    setIndex(index);
+    setCategory(category);
+    console.log(index);
+    console.log(category);
   };
 
+  useEffect(() => {}, [index]);
+
   return (
-    <main className="content">
+    <main className="flex items-start">
       <Categories onClick={onClickCategory} categoryIndex={index}></Categories>
       <Content category={category}></Content>
     </main>
