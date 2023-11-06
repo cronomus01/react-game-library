@@ -197,14 +197,14 @@ const Content = ({ category }: Props) => {
       return (
         <li
           key={gameIndex}
-          className="border-slate-900 border-2 rounded-lg text-slate-900 w-[15em] px-2 py-3"
+          className="border-slate-900 border-2 rounded-lg text-slate-900 max-w-[15em] px-2 py-3"
         >
           <div>
             <h3 className="font-bold">{game.title}</h3>
             <p>{game.publisher}</p>
           </div>
           <img
-            className="w-full max-w-[15rem] rounded-lg mt-3"
+            className="w-full rounded-lg mt-3"
             src={game.thumbnail}
             alt="image"
           />
@@ -238,7 +238,7 @@ const Content = ({ category }: Props) => {
 
   return (
     <main className="p-2 basis-10/12">
-      <div className="flex justify-between relative">
+      <div className="flex flex-wrap justify-between relative gap-2">
         <Search onSearch={searchGame}></Search>
         <Sort
           sort={dropDownSort}
