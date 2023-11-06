@@ -93,34 +93,6 @@ const SideBar = ({ toggle, onClick }: Props) => {
               </GamesIcon>
             </a>
           </li>
-          <li>
-            <a
-              href="#about"
-              className={`${activeClassStyle(1)} ${
-                !toggle ? "md:px-5" : "md:pl-9"
-              }`}
-              onClick={addActiveClass}
-              data-value="1"
-            >
-              <AboutIcon>
-                {toggle && <h1 className="pointer-events-none">About</h1>}
-              </AboutIcon>
-            </a>
-          </li>
-          <li>
-            <a
-              href="#contact"
-              className={`${activeClassStyle(2)} ${
-                !toggle ? "md:px-5" : "md:pl-9"
-              }`}
-              onClick={addActiveClass}
-              data-value="2"
-            >
-              <ContactIcon>
-                {toggle && <h1 className="pointer-events-none">Contact</h1>}
-              </ContactIcon>
-            </a>
-          </li>
         </ul>
       </nav>
     </aside>
