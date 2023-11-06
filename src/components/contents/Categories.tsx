@@ -66,7 +66,7 @@ const Categories = ({ onClick, categoryIndex }: Props) => {
             data-value={categoryIndex}
             className={`${
               categoryIndex == index ? "bg-slate-900" : "bg-slate-500"
-            } text-slate-100 text-center cursor-pointer border-2 rounded-lg px-2 ${
+            } text-slate-100 text-center cursor-pointer border-2 rounded-lg px-2 hover:border-slate-800 py-1 ${
               index === 0 && "first-category"
             }`}
           >

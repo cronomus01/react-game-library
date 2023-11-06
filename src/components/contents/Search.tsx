@@ -11,7 +11,7 @@ const Search = ({ onSearch }: SearchProps) => {
         <input
           type="text"
           onChange={(e) => onSearch(e)}
-          className="w-full border-slate-900 border-2 rounded-lg placeholder: pl-2 pr-7"
+          className="w-full border-slate-900 border-2 rounded-lg py-1 placeholder: pl-2 pr-7"
           placeholder="Search"
         />
       </form>
@@ -22,7 +22,7 @@ const Search = ({ onSearch }: SearchProps) => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6 absolute right-1 top-[0.1rem]"
+          className="w-6 h-6 absolute right-1 top-[50%] translate-y-[-50%]"
         >
           <path
             strokeLinecap="round"

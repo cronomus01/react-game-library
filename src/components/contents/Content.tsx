@@ -197,31 +197,33 @@ const Content = ({ category }: Props) => {
       return (
         <li
           key={gameIndex}
-          className="border-slate-900 border-2 rounded-lg text-slate-900 max-w-[15em] px-2 py-3"
+          className="border-2 border-slate-200 hover:border-slate-400 rounded-lg max-w-[15em] px-2 py-3 shadow-md bg-slate-500 text-slate-50 cursor-pointer"
         >
-          <div>
-            <h3 className="font-bold">{game.title}</h3>
-            <p>{game.publisher}</p>
-          </div>
-          <img
-            className="w-full rounded-lg mt-3"
-            src={game.thumbnail}
-            alt="image"
-          />
-          <div className="mt-5 flex flex-col">
-            <div className="flex gap-1">
-              <h6 className="text-sm">Category:</h6>
-              <p className="text-sm font-bold">{game.genre}</p>
+          <a href={game.game_url} target="_blank">
+            <div>
+              <h3 className="font-bold">{game.title}</h3>
+              <p>{game.publisher}</p>
             </div>
-            <div className="flex gap-1">
-              <h6 className="text-sm">Platform:</h6>
-              <p className="text-sm font-bold">{game.platform}</p>
+            <img
+              className="w-full rounded-lg mt-3"
+              src={game.thumbnail}
+              alt="image"
+            />
+            <div className="mt-5 flex flex-col">
+              <div className="flex gap-1">
+                <h6 className="text-sm">Category:</h6>
+                <p className="text-sm font-bold">{game.genre}</p>
+              </div>
+              <div className="flex gap-1">
+                <h6 className="text-sm">Platform:</h6>
+                <p className="text-sm font-bold">{game.platform}</p>
+              </div>
+              <div className="flex gap-1">
+                <h6 className="text-sm">Release Date:</h6>
+                <p className="text-sm font-bold">{game.release_date}</p>
+              </div>
             </div>
-            <div className="flex gap-1">
-              <h6 className="text-sm">Release Date:</h6>
-              <p className="text-sm font-bold">{game.release_date}</p>
-            </div>
-          </div>
+          </a>
         </li>
       );
     });

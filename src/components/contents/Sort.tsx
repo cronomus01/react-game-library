@@ -6,7 +6,7 @@ interface Props {
 const Sort = ({ onClick, sort }: Props) => {
   return (
     <div
-      className="flex gap-2 items-center border-2 px-2 rounded-md cursor-pointer"
+      className="flex gap-2 items-center border-2 px-2 py-1 rounded-md cursor-pointer hover:border-slate-900"
       onClick={onClick}
     >
       <h2 className="pointer-events-none">Sort</h2>
