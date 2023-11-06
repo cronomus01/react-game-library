@@ -2,7 +2,8 @@ import {http, HttpResponse} from 'msw';
 import { games } from './data';
 
 export const handlers = [
-  http.get('https://free-to-play-games-database.p.rapidapi.com/api/games', ({request, params, cookies}) => {
+  // @ts-ignore
+  http.get('https://free-to-play-games-database.p.rapidapi.com/api/games', ({request}) => {
     // Construct a URL instance out of the intercepted request.
     const url = new URL(request.url)
 

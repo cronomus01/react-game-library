@@ -1,6 +1,3 @@
-import React from "react";
-import Categories from "./Categories";
-
 interface Props {
   onClick: (value: number) => void;
 }

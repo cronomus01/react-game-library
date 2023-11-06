@@ -1,4 +1,3 @@
-import React from "react";
 import "./Profile.css";
 import MyProfileImage from "@/assets/irefrans-cosme.png";
 const Profile = () => {

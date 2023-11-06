@@ -19,11 +19,7 @@ function App() {
         onClick={onToggle}
       ></SideBar>
       <section className="grid grid-rows-content">
-        <Navbar
-          windowSize={windowSize}
-          onClick={onToggle}
-          toggle={toggle}
-        ></Navbar>
+        <Navbar></Navbar>
         <Main></Main>
         <Footer></Footer>
       </section>

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import HomeIcon from "./icons/GamesIcon";
 import AboutIcon from "./icons/AboutIcon";
 import ContactIcon from "./icons/ContactIcon";
 import GamesIcon from "./icons/GamesIcon";
@@ -15,7 +14,7 @@ interface Props {
   toggle?: boolean;
   windowSize: WindowSize;
 }
-const SideBar = ({ toggle, onClick, windowSize }: Props) => {
+const SideBar = ({ toggle, onClick }: Props) => {
   const [linkActive, setLinkActive] = useState<number | string>("0");
 
   const addActiveClass = (event: React.MouseEvent) => {

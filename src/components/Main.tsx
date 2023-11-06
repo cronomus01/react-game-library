@@ -1,6 +1,4 @@
-import React, { ReactNode, useState, useEffect, useRef } from "react";
-import ReactDOM from "react-dom";
-import Navbar from "./contents/Categories";
+import { useState, useEffect } from "react";
 import Content from "./contents/Content";
 import Categories from "./contents/Categories";
 
