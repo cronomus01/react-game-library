@@ -69,7 +69,9 @@ const Content = ({ category }: Props) => {
       const result: Array<Games> = await response.json();
 
       const search = Array.from(result).filter((game: Games) => {
-        if (game.title.includes(searchedGames)) {
+        const newTitle = game.title.toLowerCase().split(" ").join(" ");
+
+        if (newTitle.includes(searchedGames)) {
           return game;
         }
       });
@@ -100,7 +102,9 @@ const Content = ({ category }: Props) => {
       const result: Array<Games> = await response.json();
 
       const search = Array.from(result).filter((game: Games) => {
-        if (game.title.includes(searchedGames)) {
+        const newTitle = game.title.toLowerCase().split(" ").join(" ");
+
+        if (newTitle.includes(searchedGames)) {
           return game;
         }
       });
@@ -131,7 +135,9 @@ const Content = ({ category }: Props) => {
       const result: Array<Games> = await response.json();
 
       const search = Array.from(result).filter((game: Games) => {
-        if (game.title.includes(searchedGames)) {
+        const newTitle = game.title.toLowerCase().split(" ").join(" ");
+
+        if (newTitle.includes(searchedGames)) {
           return game;
         }
       });
@@ -148,7 +154,6 @@ const Content = ({ category }: Props) => {
 
   useEffect(() => {
     if (category == "All") {
-      // filterGames();
       fetchGames();
 
       if (sort == ALPHABETICAL) {

@@ -8,7 +8,7 @@ async function deferRender() {
   if (process.env.NODE_ENV === "development") {
     // `worker.start()` returns a Promise that resolves
     // once the Service Worker is up and ready to intercept requests.
-    return worker.start({ onUnhandledRequest: "bypass" });
+    // return worker.start({ onUnhandledRequest: "bypass" });
   }
 }
 
