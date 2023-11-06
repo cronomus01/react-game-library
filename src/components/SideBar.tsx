@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import AboutIcon from "./icons/AboutIcon";
-import ContactIcon from "./icons/ContactIcon";
 import GamesIcon from "./icons/GamesIcon";
 
 interface WindowSize {
