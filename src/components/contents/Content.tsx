@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import Search from "./Search";
 import Sort from "./Sort";
-import SortDropDown from "./SortDropDown";
 import Games from "../../types/Games";
+
+const SortDropDown = lazy(() => import("./SortDropDown"));
 
 interface Props {
   category?: string;
@@ -250,7 +251,11 @@ const Content = ({ category }: Props) => {
               : () => setDropDownSort(false)
           }
         ></Sort>
-        {dropDownSort && <SortDropDown onClick={sortGame} />}
+        {dropDownSort && (
+          <Suspense>
+            <SortDropDown onClick={sortGame} />
+          </Suspense>
+        )}
       </div>
       <ul className="flex flex-wrap gap-2 mt-2">{displayGames()}</ul>
     </main>
