@@ -108,7 +108,7 @@ const useGames = (category: string) => {
         setGames(result);
       // }
     } catch (err) {
-      console.log(err.message);
+      console.log(err);
     }
   };
   
@@ -143,7 +143,7 @@ const useGames = (category: string) => {
         setGames(result);
       // }
     } catch (err) {
-      console.log(err.message);
+      console.log(err);
     }
   };
 

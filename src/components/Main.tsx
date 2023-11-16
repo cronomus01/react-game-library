@@ -1,5 +1,4 @@
 import { useState, useEffect, lazy, Suspense, memo, useCallback } from "react";
-import ContentNav from "./contents/ContentNav";
 const Categories = lazy(() => import("./contents/Categories"));
 const Content = lazy(() => import("./contents/Content"));
 const BackToTop = lazy(() => import("./contents/BackToTop"));

@@ -1,5 +1,4 @@
 import { memo, Suspense } from "react";
-import { useDropdownSortContext } from "../../context/content";
 import SortDropDown from "./SortDropDown";
 import useSort from "../../hooks/sort";
 interface SortDropDownProps {

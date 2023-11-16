@@ -1,6 +1,3 @@
-import { useDropdownSortContext } from "../../context/content";
-import useSort from "../../hooks/sort";
-
 const ALPHABETICAL = 1;
 const RELEASE_DATE = 2;
 const POPULARITY = 3;

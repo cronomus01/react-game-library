@@ -1,6 +1,5 @@
 import React, { useState, memo } from "react";
 import GamesIcon from "./icons/GamesIcon";
-import useToggleSidebar from "../hooks/toggle-sidebar";
 
 interface SidebarProps {
   // setToggleClass?: "heading-open" | "heading-close";
