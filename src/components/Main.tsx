@@ -1,4 +1,5 @@
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect, lazy, Suspense, memo, useCallback } from "react";
+import ContentNav from "./contents/ContentNav";
 const Categories = lazy(() => import("./contents/Categories"));
 const Content = lazy(() => import("./contents/Content"));
 const BackToTop = lazy(() => import("./contents/BackToTop"));
@@ -7,33 +8,38 @@ const Main = () => {
   const [index, setIndex] = useState<string | number>(0);
   const [backToTop, setBackToTop] = useState<boolean>(false);
 
-  const onClickCategory = (index: number, category: string) => {
-    scrollUp();
-    setIndex(index);
-    setCategory(category);
-  };
+  console.log("Main rerendered");
 
-  const scrollToTop = () => {
+  const onClickCategory = useCallback(
+    (index: number, category: string) => {
+      scrollUp();
+      setIndex(index);
+      setCategory(category);
+    },
+    [category]
+  );
+
+  const scrollToTop = useCallback(() => {
     if (window.scrollY >= 1000) {
       setBackToTop(true);
     } else {
       setBackToTop(false);
     }
-  };
+  }, [category]);
 
   useEffect(() => {
     window.addEventListener("scroll", scrollToTop);
     return () => {
       window.removeEventListener("scroll", scrollToTop);
     };
-  }, [backToTop]);
+  }, [category]);
 
-  const scrollUp = () => {
+  const scrollUp = useCallback(() => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
-  };
+  }, [backToTop]);
 
   return (
     <main className="flex items-start relative">
@@ -49,4 +55,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default memo(Main);

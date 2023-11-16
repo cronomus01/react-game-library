@@ -12,9 +12,6 @@ export const handlers = [
     const category = url.searchParams.get('category')
     const sortBy = url.searchParams.get('sort-by')
 
-    console.log(request);
-    
-    
     if(category && sortBy) {
 
       const sortedByCategory = games.filter(game => {

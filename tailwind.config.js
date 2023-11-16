@@ -13,7 +13,7 @@ export default {
       }, 
       gridTemplateRows: {
         'content': '60px 1fr',
-      }
+      },
     },
   },
   plugins: [

@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 const categories = [
   "All",
   "mmorpg",
@@ -56,34 +58,30 @@ interface Props {
   categoryIndex: string | number;
 }
 const Categories = ({ onClick, categoryIndex }: Props) => {
-  const displayCategories = () => {
-    return categories.map((category, index) => {
-      return (
-        <>
-          <li
-            key={index}
-            onClick={() => onClick(index, category)}
-            data-value={categoryIndex}
-            className={`${
-              categoryIndex == index ? "bg-slate-900" : "bg-slate-500"
-            } text-slate-100 text-center cursor-pointer border-2 rounded-lg px-2 hover:border-slate-800 py-1 ${
-              index === 0 && "first-category"
-            }`}
-          >
-            <h4>{category}</h4>
-          </li>
-        </>
-      );
-    });
-  };
-
   return (
     <aside className="basis-2/12">
       <nav>
-        <ul className="flex flex-col gap-1 px-2 pt-2">{displayCategories()}</ul>
+        <ul className="flex flex-col gap-1 px-2 pt-2">
+          {categories.map((category, index) => (
+            <li
+              key={index}
+              onClick={() => onClick(index, category)}
+              data-value={categoryIndex}
+              className={`${
+                categoryIndex == index
+                  ? "bg-slate-500 text-slate-50 border-slate-900"
+                  : "text-slate-900"
+              }  text-center cursor-pointer border rounded-lg px-2 hover:border-slate-800 py-1 ${
+                index === 0 && "first-category"
+              }`}
+            >
+              <h4>{category}</h4>
+            </li>
+          ))}
+        </ul>
       </nav>
     </aside>
   );
 };
 
-export default Categories;
+export default memo(Categories);

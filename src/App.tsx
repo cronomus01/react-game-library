@@ -5,7 +5,7 @@ import SideBar from "./components/SideBar";
 import useToggleSidebar from "./hooks/toggle-sidebar";
 
 function App() {
-  const [{ windowSize, toggle, onToggle }] = useToggleSidebar();
+  const [{ toggle, onToggle }] = useToggleSidebar();
 
   return (
     <div
@@ -13,11 +13,7 @@ function App() {
         toggle ? "grid-cols-desktop" : "grid-cols-mobile"
       } h-full relative`}
     >
-      <SideBar
-        windowSize={windowSize}
-        toggle={toggle}
-        onClick={onToggle}
-      ></SideBar>
+      <SideBar toggle={toggle} onToggle={onToggle}></SideBar>
       <section className="grid grid-rows-content">
         <Navbar></Navbar>
         <Main></Main>

@@ -1,16 +1,22 @@
-interface Props {
-  onClick?: () => void;
-  sort: boolean;
+import { memo, Suspense } from "react";
+import { useDropdownSortContext } from "../../context/content";
+import SortDropDown from "./SortDropDown";
+import useSort from "../../hooks/sort";
+interface SortDropDownProps {
+  onClick: (value: number) => void;
 }
 
-const Sort = ({ onClick, sort }: Props) => {
+const Sort = ({ onClick }: SortDropDownProps) => {
+  // const dropDown = useDropdownSortContext();
+  const { onToggle, dropDownSort } = useSort();
+
   return (
     <div
-      className="flex gap-2 items-center border-2 px-2 py-1 rounded-md cursor-pointer hover:border-slate-900"
-      onClick={onClick}
+      className="flex gap-2 items-center border px-2 py-1 rounded-md cursor-pointer hover:border-slate-900 text-slate-900"
+      onClick={onToggle}
     >
       <h2 className="pointer-events-none">Sort</h2>
-      {sort ? (
+      {dropDownSort ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -41,8 +47,13 @@ const Sort = ({ onClick, sort }: Props) => {
           />
         </svg>
       )}
+      {dropDownSort && (
+        <Suspense>
+          <SortDropDown onClick={onClick} />
+        </Suspense>
+      )}
     </div>
   );
 };
 
-export default Sort;
+export default memo(Sort);

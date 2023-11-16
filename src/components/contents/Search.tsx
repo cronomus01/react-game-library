@@ -11,7 +11,7 @@ const Search = ({ onSearch }: SearchProps) => {
         <input
           type="text"
           onChange={(e) => onSearch(e)}
-          className="w-full border-slate-200 border-2 rounded-lg py-1 placeholder: pl-2 pr-7"
+          className="w-full border-slate-200 border rounded-lg py-1 placeholder: pl-2 pr-7"
           placeholder="Search"
         />
       </form>
